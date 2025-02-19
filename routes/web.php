@@ -34,9 +34,9 @@ Route::get('/about', function () {
     NIM : 2341720162';
 });
 
-Route::get('/user/{name}', function ($name) {
-    return 'Nama Saya '.$name;
-});
+// Route::get('/user/{name}', function ($name) {
+//     return 'Nama Saya '.$name;
+// });
 
 Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
     return 'Pos ke-'.$postId." Komentar ke-: ".$commentId;
@@ -44,8 +44,11 @@ Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
 
 Route::get('/articles/{id}', function ($id) {
         return 'Halaman  artikel dengan ID '.$id;
-        });
-    
+});
+
+Route::get('/user/{name?}', function($name='John'){
+    return 'Nama saya '. $name;
+});
 
 
 
