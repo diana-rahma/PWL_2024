@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PhotoController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,9 +41,9 @@ Route::get('/about', function () {
     NIM : 2341720162';
 });
 
-// Route::get('/user/{name}', function ($name) {
-//     return 'Nama Saya '.$name;
-// });
+Route::get('/user/{name}', function ($name) {
+    return 'Nama Saya '.$name;
+});
 
 Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
     return 'Pos ke-'.$postId." Komentar ke-: ".$commentId;
@@ -51,4 +58,47 @@ Route::get('/user/{name?}', function($name='John'){
 });
 
 
+Route::get('/user/profile', function(){
+    //
+})->name('profile');
+
+
+// route group dan route prefix
+// Route::middleware(['first', 'second'])->group(function () { 
+//     Route::get('/', function () {
+//         // Uses first & second middleware...
+// });
+
+//     Route::get('/user/profile', function () {
+//         // Uses first & second middleware...
+//         });
+//     });
+    
+//     Route::domain('{account}.example.com')->group(function () {          
+//         Route::get('user/{id}', function ($account, $id) {
+//         //
+//         });
+//     });
+//     Route::middleware('auth')->group(function () { Route::get('/user', 
+//         [UserController::class, 'index']); Route::get('/post', [PostController::class, 'index']); Route::get('/event', [EventController::class, 'index']);
+// });
+
+// Route::prefix('admin')->group(function () { Route::get('/user',         
+//     [UserController::class, 'index']); Route::get('/post', [PostController::class, 'index']); Route::get('/event', [EventController::class, 'index']);
+// });
+
+// Route::redirect('/here', '/there');
+
+// Route::view('/welcome', 'welcome'); 
+// Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
+
+
+Route::get('/hello', [WelcomeController::class,'hello']);
+
+Route::get('/', [HomeController::class,'index']);
+Route::get('/about', [AboutController::class,'about']);
+Route::get('/articles/(id)', [ArticleController::class,'articles($id)']);
+
+
+Route::resource('photos', PhotoController::class);
 
